@@ -1,7 +1,7 @@
 /*IMPORTING FUNCTIONS FROM FIREBASE LIBRARY*/
 import { initializeApp } from 'firebase/app'; 
 import { getDatabase } from 'firebase/database'; 
-import { getAuth, connectAuthEmulator, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDBeu30InEKxUvQ2seVtghxfiya9nLlSTA",
@@ -19,13 +19,34 @@ const auth = getAuth(app);
 connectAuthEmulator(auth,"http://localhost:9099");
 
 /*Test to see if database is connected*/ 
-console.log("DATABASE CONNECTED");
+console.log("DATABASE CONNECTED", database);
 
 /*LOGIN PAGE*/
 const email_input = document.getElementById("email_input");
 const password_input = document.getElementById("password_input");
 const login_button = document.getElementById("login");
 const register_button = document.getElementById("register");
+
+/*-----TEST writing to realtime database-----*/
+const test = document.getElementById("test_button");
+function writeToDatabase() {
+    console.log("test button pressed");
+    const database_ref = ref(database, 'test'); 
+    const data = {
+        message: 'Hello, Firebase!' 
+    };
+
+    set(database_ref, data)
+        .then(() => {
+            console.log('Data written successfully!');
+        })
+        .catch((error) => {
+            console.error('Error writing data to Firebase:', error);
+        });
+}
+// Call the function to trigger the write operation
+test.addEventListener("click", writeToDatabase);
+/*-----END TEST---------*/
 
 /*returns true if email is valid-false if invalid */
 function validate_email(email)
@@ -58,7 +79,7 @@ function validate_password(password)
     }
 }
 
-const login_function = async () => 
+function login_function() 
 {
     alert("login button has been pushed");
     console.log("login function started");
@@ -75,14 +96,50 @@ const login_function = async () =>
         alert("you did not meet password requirments of 8 characters")
     }
     
-    const user_credential = await signInWithEmailAndPassword(auth, email, password);
-    console.log(user_credential);
+    const userCredential = signInWithEmailAndPassword(auth, email, password);
+    console.log(userCredential);
 }
 
 login_button.addEventListener("click", login_function);
 
-register_button.addEventListener("click", function() {
-    console.log("register butten has been clicked");
-    alert("register button has been clicked!"); 
-});
+function register_function()
+{
+    const email = email_input.value;
+    const password = password_input.value;
 
+    if (validate_email(email) == false)
+    {
+        alert("you did not enter a valid email")
+        return;
+    }
+    if(validate_password(password) == false)
+    {
+        alert("you did not meet password requirments of 8 characters")
+        return;
+    }
+
+    auth.createUserWithEmailAndPassword(auth, email, password) 
+        .then((userCredential) => { 
+            const user = userCredential.user;
+            console.log(user)
+            console.log("user created")
+            alert("user created")
+
+            const database_ref = database.ref()
+
+            database_ref.child('users/' + user.uid).set({
+                email: email,
+                last_login: Date.now()
+            });
+        })
+
+        .catch(function(error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            alert(errorCode, errorMessage)
+        })
+
+    console.log("register butten has been clicked")
+}
+register_button.addEventListener("click", register_function);
