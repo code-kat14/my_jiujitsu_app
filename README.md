@@ -1,7 +1,7 @@
 # my_jiujitsu_app
 Welcome to My Jiu Jitsu App! 🥋<br> 
 
-Technology I am using:<br>
+Tech Stack:<br>
   ✔️HTML<br>
   ✔️CSS<br>
   ✔️Javascript<br>
