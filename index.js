@@ -1,6 +1,6 @@
 /*IMPORTING FUNCTIONS FROM FIREBASE LIBRARY*/
 import { initializeApp } from 'firebase/app'; 
-import { getDatabase } from 'firebase/database'; 
+import { getDatabase, ref, set } from 'firebase/database'; 
 import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
@@ -44,11 +44,10 @@ function writeToDatabase() {
             console.error('Error writing data to Firebase:', error);
         });
 }
-// Call the function to trigger the write operation
 test.addEventListener("click", writeToDatabase);
 /*-----END TEST---------*/
 
-/*returns true if email is valid-false if invalid */
+/*--CHECK IF EMAIL IS VALID--*/
 function validate_email(email)
 {
     regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -64,7 +63,7 @@ function validate_email(email)
     }
 }
 
-/*return true if password is at least 8 chars long */
+/*--CHECK IF PASSWORD IS VALID--*/
 function validate_password(password)
 {
     if(password.length < 9)
@@ -79,6 +78,7 @@ function validate_password(password)
     }
 }
 
+/*---LOGIN---*/
 function login_function() 
 {
     alert("login button has been pushed");
@@ -99,9 +99,9 @@ function login_function()
     const userCredential = signInWithEmailAndPassword(auth, email, password);
     console.log(userCredential);
 }
-
 login_button.addEventListener("click", login_function);
 
+/*---REGISTER---*/
 function register_function()
 {
     const email = email_input.value;
