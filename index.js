@@ -3,7 +3,6 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from 'firebase/database'; 
 import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import 'dotenv/config'
-console.log(process.env)
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_DB_API_KEY,
