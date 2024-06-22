@@ -2,9 +2,11 @@
 import { initializeApp } from 'firebase/app'; 
 import { getDatabase, ref, set } from 'firebase/database'; 
 import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import 'dotenv/config'
+console.log(process.env)
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDBeu30InEKxUvQ2seVtghxfiya9nLlSTA",
+    apiKey: process.env.FIREBASE_DB_API_KEY,
     authDomain: "my-jiu-jitsu-app.firebaseapp.com",
     databaseURL: "https://my-jiu-jitsu-app-default-rtdb.firebaseio.com",
     projectId: "my-jiu-jitsu-app",

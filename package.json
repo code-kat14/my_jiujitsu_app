@@ -19,6 +19,7 @@
   "homepage": "https://github.com/code-kat14/my_jiujitsu_app#readme",
   "type": "module",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.1.0"
   },
