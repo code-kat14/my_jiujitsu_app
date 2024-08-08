@@ -1,0 +1,30 @@
+{
+  "name": "my_jiujitsu_app",
+  "version": "1.0.0",
+  "description": "json dependancies",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-kat14/my_jiujitsu_app.git"
+  },
+  "author": "Katie Nino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code-kat14/my_jiujitsu_app/issues"
+  },
+  "homepage": "https://github.com/code-kat14/my_jiujitsu_app#readme",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "firebase": "^10.12.2",
+    "firebase-admin": "^12.1.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

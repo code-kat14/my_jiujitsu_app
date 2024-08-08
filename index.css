@@ -1,0 +1,42 @@
+body
+{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background-color: darkseagreen;
+}
+
+
+.landing_page_container .login_form
+{
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+input
+{
+    text-align: center;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button 
+{
+    background-color: black;
+    color: antiquewhite;
+    margin: 5px 0;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#register
+{
+    background: none;
+    border: none;
+    color: antiquewhite;
+}
