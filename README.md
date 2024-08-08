@@ -1,4 +1,4 @@
-# my_jiujitsu_app
+# my_jiujitsu_app (this app is underconstruction)
 Welcome to My Jiu Jitsu App! 🥋<br> 
 
 Tech Stack:<br>
